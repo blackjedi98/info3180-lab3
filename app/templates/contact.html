@@ -1,0 +1,46 @@
+!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+    {% block main %}
+
+    <div class="container mt-5">
+        <h2>Contact Form</h2>
+        <p>Fill in this form to contact the site owners.</p>
+
+        <form method="POST">
+            {{ form.csrf_token }}  
+
+            <div class="mb-3">
+                {{ form.name.label(class="form-label") }} <span class="text-danger">(Required)</span>
+                {{ form.name(class="form-control", placeholder="Please enter your full name") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.email.label(class="form-label") }} <span class="text-danger">(Required)</span>
+                {{ form.email(class="form-control", placeholder="Please enter your e-mail address") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.subject.label(class="form-label") }} <span class="text-danger">(Required)</span>
+                {{ form.subject(class="form-control", placeholder="Please enter the subject for your message") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.message.label(class="form-label") }} <span class="text-danger">(Required)</span>
+                {{ form.message(class="form-control", rows="4", placeholder="Please enter the message you would like to send.") }}
+            </div>
+
+            <input type="submit" value="Send" class="btn btn-primary">
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>
